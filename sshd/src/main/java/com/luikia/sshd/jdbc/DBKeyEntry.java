@@ -1,6 +1,6 @@
 package com.luikia.sshd.jdbc;
 
-import com.luikia.sshd.config.SshConfig;
+import com.luikia.sshd.core.ssh.SshConfig;
 import com.luikia.sshd.entity.Host;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -8,12 +8,9 @@ import org.apache.sshd.common.config.keys.AuthorizedKeyEntry;
 import org.apache.sshd.common.config.keys.KeyUtils;
 import org.apache.sshd.common.config.keys.PublicKeyEntryResolver;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.security.PublicKey;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,7 @@ public class DBKeyEntry {
 
 
 
-    public DBKeyEntry(SshConfig config) throws ClassNotFoundException {
+    /*public DBKeyEntry(SshConfig config) throws ClassNotFoundException {
         this.config = config;
         Class.forName(config.getDbDriver());
     }
@@ -66,6 +63,6 @@ public class DBKeyEntry {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
 }
