@@ -54,12 +54,6 @@
             <version>1.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.jvnet.hudson</groupId>
-            <artifactId>ganymed-ssh-2</artifactId>
-            <version>build260</version>
-        </dependency>
-
     </dependencies>
 
 

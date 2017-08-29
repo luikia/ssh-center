@@ -1,6 +1,5 @@
 package com.luikia.sshd;
 
-import ch.ethz.ssh2.KnownHosts;
 import com.luikia.sshd.core.ssh.SshConfig;
 import com.luikia.sshd.jdbc.DBKeyEntry;
 import org.apache.sshd.client.config.hosts.KnownHostDigest;
@@ -8,6 +7,9 @@ import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.config.keys.AuthorizedKeyEntry;
 import org.apache.sshd.common.config.keys.KeyUtils;
 import org.apache.sshd.common.config.keys.PublicKeyEntryResolver;
+import org.apache.sshd.common.digest.BaseDigest;
+import org.apache.sshd.common.digest.BuiltinDigests;
+import org.apache.sshd.common.digest.DigestUtils;
 import org.apache.sshd.server.Command;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
@@ -31,17 +33,16 @@ import java.util.List;
 @SpringBootApplication
 public class SshdStart {
 
-    public static void main(String[] args) throws IOException, GeneralSecurityException {
-        AuthorizedKeyEntry entry = AuthorizedKeyEntry.parseAuthorizedKeyEntry("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCy62rNp+dKwff/fjNPSFgkTaMNQVNEBRd4cJf2ehYhQPcEzauavVKvyxU/dIvv+pOsdMt/0JwkAVrTDccwTTyZhqI+mw/f/n+DBkH/oQ448iMgVUDiKno1HQhAnHv1vf58p8UfdVZEwSjNETq6YO1OqZqD58qJeKYdXcxDZ/F7Sl5j02ffD74P4kMiltnnaaMU9ExNaPHaUFoP5sh9hEVfaG52IOi0JBaWMn4J4K4Dn1dgnbwz+rwYMaStti/xXyZHVuAq7CjhH8rS/47dDeKcMpV779B1bOoMUkZ7qt2UZ5NqAJpkVXGnpRCjhiC1o0UH+8WX+i5qUka7LiDzxPSb suateam@DESKTOP-27I6UCL");
-        String ss = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCy62rNp+dKwff/fjNPSFgkTaMNQVNEBRd4cJf2ehYhQPcEzauavVKvyxU/dIvv+pOsdMt/0JwkAVrTDccwTTyZhqI+mw/f/n+DBkH/oQ448iMgVUDiKno1HQhAnHv1vf58p8UfdVZEwSjNETq6YO1OqZqD58qJeKYdXcxDZ/F7Sl5j02ffD74P4kMiltnnaaMU9ExNaPHaUFoP5sh9hEVfaG52IOi0JBaWMn4J4K4Dn1dgnbwz+rwYMaStti/xXyZHVuAq7CjhH8rS/47dDeKcMpV779B1bOoMUkZ7qt2UZ5NqAJpkVXGnpRCjhiC1o0UH+8WX+i5qUka7LiDzxPSb suateam@DESKTOP-27I6UCL";
+    public static void main(String[] args) throws Exception {
+       /* AuthorizedKeyEntry entry = AuthorizedKeyEntry.parseAuthorizedKeyEntry("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCy62rNp+dKwff/fjNPSFgkTaMNQVNEBRd4cJf2ehYhQPcEzauavVKvyxU/dIvv+pOsdMt/0JwkAVrTDccwTTyZhqI+mw/f/n+DBkH/oQ448iMgVUDiKno1HQhAnHv1vf58p8UfdVZEwSjNETq6YO1OqZqD58qJeKYdXcxDZ/F7Sl5j02ffD74P4kMiltnnaaMU9ExNaPHaUFoP5sh9hEVfaG52IOi0JBaWMn4J4K4Dn1dgnbwz+rwYMaStti/xXyZHVuAq7CjhH8rS/47dDeKcMpV779B1bOoMUkZ7qt2UZ5NqAJpkVXGnpRCjhiC1o0UH+8WX+i5qUka7LiDzxPSb suateam@DESKTOP-27I6UCL");
         PublicKey key = entry.resolvePublicKey(PublicKeyEntryResolver.FAILING);
-        String fp = KeyUtils.getFingerPrint(key);
-        String s = KnownHosts.createHexFingerprint("ssh-rsa",fp.getBytes());
-        System.out.println(s);
+
+        String fp = KeyUtils.getFingerPrint(BuiltinDigests.md5,key);
+        System.out.println(fp);*/
 
 
 
-        //SpringApplication.run(SshdStart.class,args);
+        SpringApplication.run(SshdStart.class,args);
 
     }
 

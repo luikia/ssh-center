@@ -1,6 +1,14 @@
 package com.luikia.sshd.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.sshd.common.config.keys.AuthorizedKeyEntry;
 import org.apache.sshd.common.config.keys.KeyUtils;
+import org.apache.sshd.common.config.keys.PublicKeyEntryResolver;
+import org.apache.sshd.common.digest.BuiltinDigests;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.PublicKey;
 
 /**
  * Created by luikia on 2017/8/28.
@@ -34,12 +42,14 @@ public class SshModel {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+    @JsonIgnore
     public String getPublicKey() {
+        return this.publicKey;
+    }
 
-
-
-        return KeyUtils.getFingerPrint(publicKey);
+    public SshFingerPrint getFingerPrint(){
+        AuthorizedKeyEntry entry = AuthorizedKeyEntry.parseAuthorizedKeyEntry(this.publicKey);
+        return new SshFingerPrint(entry);
     }
 
     public void setPublicKey(String publicKey) {
